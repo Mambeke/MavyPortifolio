@@ -201,26 +201,16 @@ ul.ticks li:before{content:"✓";position:absolute;left:0;color:var(--teal);font
 .svc-foot a{color:var(--coral);text-decoration:none}
 .svc-foot a:hover{text-decoration:underline}
 
-/* PROJECTS with charts */
+/* PROJECTS with thumbnails */
 .filter{display:flex;gap:.45rem;flex-wrap:wrap;margin-bottom:1.5rem}
 .filter button{border:1px solid var(--line);background:#fff;padding:.42rem .95rem;border-radius:99px;font-family:var(--d);font-size:.81rem;font-weight:600;color:var(--ink-soft);cursor:pointer;transition:.18s}
 .filter button.on,.filter button:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
 .proj{background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;transition:.22s}
 .proj:hover{transform:translateY(-5px);box-shadow:0 22px 44px -24px rgba(22,29,51,.4)}
-.viz{padding:0;position:relative;background:#fff!important;border-bottom:1px solid var(--line)}
-.viz-bar{display:flex;align-items:center;gap:.4rem;padding:.5rem .8rem;background:#f4f6fb;border-bottom:1px solid var(--line)}
-.viz-bar i{width:8px;height:8px;border-radius:50%;background:#d8dde8;display:block}
-.viz-bar b{font-family:var(--b);font-size:.68rem;font-weight:500;color:var(--ink-soft);margin-left:.35rem;letter-spacing:.01em}
-.viz-bar u{margin-left:auto;text-decoration:none;font-family:var(--d);font-size:.6rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#fff;background:var(--a);padding:.14rem .45rem;border-radius:5px}
-.viz-in{padding:.75rem .9rem .9rem}
-.viz-h{display:flex;justify-content:space-between;align-items:center;font-family:var(--d);font-size:.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:.55rem}
-.viz-k{display:flex;gap:.5rem;margin-bottom:.65rem}
-.viz-k div{font-family:var(--d);flex:1;background:#fafbfe;border:1px solid var(--line);border-radius:9px;padding:.4rem .5rem}
-.viz-k b{display:block;font-size:.98rem;line-height:1.15;color:var(--ink)}
-.viz-k span{font-size:.6rem;color:var(--ink-soft);letter-spacing:.04em;text-transform:uppercase}
-.viz svg{display:block;width:100%;height:74px;overflow:visible}
-.viz .gl{stroke:#e6e9f2;stroke-width:1}
-.viz .lb{fill:#8b93a7;font-size:7px;font-family:'Inter',sans-serif}
+.viz{padding:0;position:relative;height:172px;overflow:hidden;background:#f4f6fb;border-bottom:1px solid var(--line)}
+.viz img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .45s cubic-bezier(.2,.7,.3,1)}
+.viz-tag{position:absolute;top:10px;right:10px;font-family:var(--d);font-size:.63rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#fff;background:rgba(22,29,51,.78);backdrop-filter:blur(6px);padding:.24rem .58rem;border-radius:99px;box-shadow:0 4px 12px rgba(0,0,0,.18)}
+@media(max-width:600px){.viz{height:164px}}
 .proj-body{padding:1.15rem 1.3rem;flex:1;display:flex;flex-direction:column}
 .proj-body p{font-size:.88rem;color:var(--ink-soft)}
 .insight{background:var(--cream);border-left:3px solid var(--amber);border-radius:0 10px 10px 0;padding:.6rem .8rem;font-size:.84rem;font-family:var(--d);font-weight:600;margin-bottom:.8rem}
@@ -285,8 +275,8 @@ nav.tabs a:not(.active):hover:after{left:.85rem;right:.85rem}
 .svc-top .si{transition:.3s}
 .svc:before{content:"";position:absolute;inset:0;border-radius:var(--radius);pointer-events:none;box-shadow:inset 0 0 0 2px transparent;transition:.25s}
 .svc:hover:before{box-shadow:inset 0 0 0 2px rgba(255,91,61,.35)}
-.proj .viz svg,.proj .viz{transition:.35s}
-.proj:hover .viz svg{transform:scale(1.04)}
+.proj .viz{transition:.35s}
+.proj:hover .viz img{transform:scale(1.05)}
 .proj:hover .proj-links a{letter-spacing:.02em}
 .proj-links a,.svc-foot a{transition:.25s}
 .post:hover .more{color:var(--coral)}
@@ -629,107 +619,57 @@ function observeAll(){
 const TOOLS=["Excel","Power BI","SQL","Python","DAX","Pandas","Data cleaning","Dashboards","Financial reporting","RFM segmentation","Forecasting","KPI design"];
 document.getElementById('marq').innerHTML=[0,1].map(()=>TOOLS.map(t=>`<span>${t}</span><b>◆</b>`).join('')).join('');
 
-/* ── mini chart builders (inline SVG, no libraries) ── */
-const W=260,H=74;
-function bars(v,lbl){const n=v.length,g=W/n,bw=g*.56,mx=Math.max(...v);
- return `<svg viewBox="0 0 ${W} ${H+10}" preserveAspectRatio="none">
-  ${[0,.5,1].map(p=>`<line class="gl" x1="0" y1="${H*p}" x2="${W}" y2="${H*p}"/>`).join('')}
-  ${v.map((d,i)=>{const h=Math.max(3,d/mx*(H-6));return `<rect x="${i*g+(g-bw)/2}" y="${H-h}" width="${bw}" height="${h}" rx="2" fill="var(--a)" fill-opacity=".88"/>`}).join('')}
-  ${lbl?lbl.map((t,i)=>`<text class="lb" x="${i*g+g/2}" y="${H+8}" text-anchor="middle">${t}</text>`).join(''):''}</svg>`}
-function barsSigned(v,lbl){const mx=Math.max(...v.map(Math.abs)),n=v.length,g=W/n,bw=g*.56,z=H/2;
- return `<svg viewBox="0 0 ${W} ${H+10}" preserveAspectRatio="none">
-  <line class="gl" x1="0" y1="${z}" x2="${W}" y2="${z}"/>
-  ${v.map((d,i)=>{const h=Math.abs(d)/mx*(z-4);return `<rect x="${i*g+(g-bw)/2}" y="${d>=0?z-h:z}" width="${bw}" height="${Math.max(3,h)}" rx="2" fill="${d>=0?'var(--a)':'#e2596a'}"/>`}).join('')}
-  ${lbl.map((t,i)=>`<text class="lb" x="${i*g+g/2}" y="${H+8}" text-anchor="middle">${t}</text>`).join('')}</svg>`}
-function line(v){const mx=Math.max(...v),mn=Math.min(...v),n=v.length;
- const pts=v.map((d,i)=>[i*(W/(n-1)),H-((d-mn)/((mx-mn)||1))*(H-8)-4]);
- const p=pts.map(q=>q.map(x=>x.toFixed(1)).join(',')).join(' L ');
- return `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none">
-  ${[0,.5,1].map(k=>`<line class="gl" x1="0" y1="${H*k}" x2="${W}" y2="${H*k}"/>`).join('')}
-  <path d="M ${p} L ${W},${H} L 0,${H} Z" fill="color-mix(in srgb,var(--a) 16%,#fff)"/>
-  <path d="M ${p}" fill="none" stroke="var(--a)" stroke-width="2.2" stroke-linejoin="round"/>
-  ${pts.filter((_,i)=>i%2===0).map(q=>`<circle cx="${q[0]}" cy="${q[1]}" r="2.6" fill="var(--a)"/>`).join('')}</svg>`}
-function funnel(v,lbl){const mx=v[0],n=v.length,g=W/n;
- return `<svg viewBox="0 0 ${W} ${H+10}" preserveAspectRatio="none">
-  ${v.map((d,i)=>{const h=Math.max(4,d/mx*(H-6));return `<rect x="${i*g+g*.12}" y="${(H-h)/2}" width="${g*.76}" height="${h}" rx="3" fill="color-mix(in srgb,var(--a) ${95-i*16}%,#eef1f7)"/>`}).join('')}
-  ${lbl.map((t,i)=>`<text class="lb" x="${i*g+g/2}" y="${H+8}" text-anchor="middle">${t}</text>`).join('')}</svg>`}
-function donut(seg){let a=-Math.PI/2;const cx=W/2,cy=H/2,r=30,ir=17;
- const arcs=seg.map((s,i)=>{const ang=s.v/100*Math.PI*2,e=a+ang,big=ang>Math.PI?1:0;
-  const p=[cx+r*Math.cos(a),cy+r*Math.sin(a),cx+r*Math.cos(e),cy+r*Math.sin(e),cx+ir*Math.cos(e),cy+ir*Math.sin(e),cx+ir*Math.cos(a),cy+ir*Math.sin(a)].map(x=>x.toFixed(1));
-  a=e;return `<path d="M${p[0]},${p[1]} A${r},${r} 0 ${big} 1 ${p[2]},${p[3]} L${p[4]},${p[5]} A${ir},${ir} 0 ${big} 0 ${p[6]},${p[7]} Z" fill="color-mix(in srgb,var(--a) ${95-i*22}%,#eef1f7)"/>`}).join('');
- const leg=seg.map((s,i)=>`<g transform="translate(${W/2+42},${18+i*15})"><rect width="8" height="8" rx="2" fill="color-mix(in srgb,var(--a) ${95-i*22}%,#eef1f7)"/><text class="lb" x="12" y="7">${s.l} ${s.v}%</text></g>`).join('');
- return `<svg viewBox="0 0 ${W} ${H}"><g transform="translate(-38,0)">${arcs}</g>${leg}</svg>`}
-function scatter(pts){return `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none">
-  ${[0,.5,1].map(k=>`<line class="gl" x1="0" y1="${H*k}" x2="${W}" y2="${H*k}"/>`).join('')}
-  ${pts.map(p=>`<circle cx="${p[0]/100*W}" cy="${H-p[1]/100*H}" r="${p[2]||3}" fill="var(--a)" fill-opacity=".8"/>`).join('')}</svg>`}
-function heat(rows){const c=rows[0].length,cw=W/c,rh=(H-4)/rows.length;
- return `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none">${rows.map((r,y)=>r.map((v,x)=>
-  `<rect x="${x*cw+1}" y="${y*rh+1}" width="${cw-2}" height="${rh-2}" rx="2" fill="color-mix(in srgb,var(--a) ${Math.round(12+v*80)}%,#f2f4f9)"/>`).join('')).join('')}</svg>`}
-
 const P=[
- {t:"Superstore Sales Performance",f:"superstore-sales.pbix",b:"Power BI",c:["sales","finance"],g:"linear-gradient(120deg,#ff5b3d,#ffb02e)",vh:["Profit by category","FY view"],
-  k:[["$2.33M","Sales"],["$292K","Profit"],["+47%","YoY"]],viz:barsSigned([88,54,-22,31,66,42],["Tech","Office","Furn","Phone","Chair","Bind"]),
+ {t:"Superstore Sales Performance",img:"superstore-sales.webp",alt:"Retail store electronics and furniture display with category margin chart on tablet",b:"Power BI",c:["sales","finance"],
   ins:"Analysis focus: compare category revenue with profit contribution and identify margin differences.",
   d:"Sales and profit broken down by category, region and product across a full financial year, modelled in Power BI with DAX measures.",
   u:"https://github.com/mavismasikati/FUTURE_DS_TASK01"},
- {t:"Customer Segmentation & RFM",f:"customer-rfm-model.pbix",b:"Power BI",c:["customer","finance"],g:"linear-gradient(120deg,#0fa39a,#43c6ac)",vh:["Customer base split","RFM"],
-  k:[["18,484","Customers"],["74%","Churned"]],viz:donut([{l:"Champions",v:12},{l:"Loyal",v:14},{l:"At risk",v:31},{l:"Lost",v:43}]),
+ {t:"Customer Segmentation & RFM",img:"customer-rfm.webp",alt:"Customer orders and segmented ring chart on analyst laptop",b:"Power BI",c:["customer","finance"],
   ins:"Analysis focus: use customer value segments to compare purchasing behaviour and retention patterns.",
   d:"Recency, frequency and monetary scoring to expose churn and rank customers by value — delivered as a retention dashboard with target lists.",
   u:"https://github.com/mavismasikati/FUTURE_DS_TASK02"},
- {t:"E-commerce Conversion Funnel",f:"conversion-funnel.ipynb",b:"Python",c:["sales","customer"],g:"linear-gradient(120deg,#6c5ce7,#a06cff)",vh:["Buying journey","Sessions"],
-  k:[["24,000+","Sessions"],["97%","Drop-off"]],viz:funnel([100,42,12,3],["View","Cart","Pay","Buy"]),
+ {t:"E-commerce Conversion Funnel",img:"ecommerce-funnel.webp",alt:"Online shopping product grid and conversion funnel visual on laptop and phone",b:"Python",c:["sales","customer"],
   ins:"Analysis focus: locate the largest drop-off points in the recorded e-commerce conversion journey.",
   d:"Session-level funnel analysis in Python mapping drop-off at every stage, plus hour-by-hour traffic showing a 1 PM peak for campaign timing.",
   u:"https://github.com/mavismasikati/FUTURE_DS_TASK03"},
- {t:"Food & Beverage Sales Dashboard",f:"food-beverage-sales.pbix",b:"Power BI",c:["sales","finance"],g:"linear-gradient(120deg,#e8590c,#ffb02e)",vh:["Revenue by channel","Monthly"],
-  k:[["4","Channels"],["12 mo","Tracked"]],viz:bars([42,68,55,80,63,74,90,71],["J","F","M","A","M","J","J","A"]),
+ {t:"Food & Beverage Sales Dashboard",img:"food-beverage-sales.webp",alt:"Modern food and beverage counter with sales chart tablet",b:"Power BI",c:["sales","finance"],
   ins:"Analysis focus: compare sales volume, average price and revenue across sales channels.",
   d:"Power BI dashboard tracking revenue, order volume and average price by channel, category, salesperson and period.",
   u:"https://github.com/mavismasikati/Food-and-Beverages-sales-analysis"},
- {t:"Market Basket Analysis",f:"market-basket-rules.ipynb",b:"Python",c:["customer","sales"],g:"linear-gradient(120deg,#0b7285,#0fa39a)",vh:["Association rules","Support × lift"],
-  k:[["Lift","Ranked"],["Top 10","Pairs"]],viz:scatter([[12,20,3],[22,44,4],[35,30,3],[44,68,5],[52,40,3],[61,76,6],[70,52,4],[80,86,5],[88,60,3],[30,58,4],[58,24,3]]),
+ {t:"Market Basket Analysis",img:"market-basket.webp",alt:"Retail shopping basket filled with paired grocery items on wooden counter",b:"Python",c:["customer","sales"],
   ins:"Analysis focus: identify product combinations with stronger association in transaction records.",
   d:"Support, confidence and lift calculated across retail transactions, translated into cross-sell bundles and shelf-placement decisions.",
   u:"https://github.com/mavismasikati/Market-Basket-Analysis"},
- {t:"Bank Loan Portfolio Report",f:"bank-loan-portfolio.pbix",b:"Power BI",c:["finance"],g:"linear-gradient(120deg,#364fc7,#6c5ce7)",vh:["Good vs bad loans","Portfolio"],
-  k:[["Funded","vs Received"],["Risk","Split"]],viz:bars([86,74,92,68,80,58,88],["Q1","Q2","Q3","Q4","Q5","Q6","Q7"]),
+ {t:"Bank Loan Portfolio Report",img:"bank-loan-report.webp",alt:"Financial analyst desk with calculator, folder and loan portfolio bar chart on laptop",b:"Power BI",c:["finance"],
   ins:"Analysis focus: compare loan applications, funded amounts and portfolio quality indicators.",
   d:"Lending report covering application volumes, funded and received amounts, and good-versus-bad loan performance for credit decisions.",
   u:"https://github.com/mavismasikati/Bank-loan-Report"},
- {t:"Bicycle Shop Sales Analysis",f:"bicycle-shop-sales.pbix",b:"Excel · Power BI",c:["sales"],g:"linear-gradient(120deg,#ff5b3d,#ff8fa3)",vh:["Two-year trend","Seasonality"],
-  k:[["2 yrs","Data"],["Peak","Identified"]],viz:line([30,38,52,61,48,72,88,79,64,86,95,70]),
+ {t:"Bicycle Shop Sales Analysis",img:"bicycle-shop-sales.webp",alt:"Modern bicycle retail showroom with road and commuter bikes on display",b:"Excel · Power BI",c:["sales"],
   ins:"Analysis focus: examine historical sales trends and seasonal variation to support stock planning.",
   d:"Two years of retail sales cleaned in Excel and visualised in Power BI: trends, seasonality, customer and product segmentation, KPI tracking.",
   u:"https://github.com/mavismasikati/Sales-Analysis-of-a-Bicycle-shop"},
- {t:"Library Management System (SQL)",f:"library-schema.sql",b:"SQL",c:["sql"],g:"linear-gradient(120deg,#212529,#495057)",vh:["Schema & queries","SQL"],
-  k:[["CRUD","+ joins"],["Design","Normalised"]],viz:heat([[.2,.6,.9,.4,.7,.3,.8,.5],[.7,.3,.5,.9,.2,.6,.4,.8],[.4,.8,.2,.6,.9,.5,.3,.7]]),
+ {t:"Library Management System (SQL)",img:"library-sql.webp",alt:"Contemporary library shelves with database schema workstation in foreground",b:"SQL",c:["sql"],
   ins:"Analysis focus: demonstrate relational database design, data management and SQL querying.",
   d:"Full SQL project — schema design, table management, CRUD operations and advanced queries on a working library database.",
   u:"https://github.com/mavismasikati/Library-Management_sql_project"},
- {t:"Monday Coffee — Market Entry",f:"monday-coffee-expansion.sql",b:"SQL",c:["sql","finance"],g:"linear-gradient(120deg,#7d4f2a,#c08552)",vh:["City demand ranking","SQL"],
-  k:[["10","Cities ranked"],["Top 3","Recommended"]],viz:bars([95,82,74,58,49,41,33,28,22,17],["C1","C2","C3","C4","C5","C6","C7","C8","C9","C10"]),
+ {t:"Monday Coffee — Market Entry",img:"monday-coffee.webp",alt:"Specialty coffee cup and espresso beans overlooking a busy city street",b:"SQL",c:["sql","finance"],
   ins:"Analysis focus: compare city-level demand indicators to support a market-entry assessment.",
   d:"SQL analysis of sales, customer counts and city-level demand to recommend where a coffee chain should open next.",
   u:"https://github.com/mavismasikati/Monday_Coffee_sql_p2"},
- {t:"Hospital & Healthcare Dashboard",f:"hospital-operations.pbix",b:"Power BI",c:["customer"],g:"linear-gradient(120deg,#0ca678,#63e6be)",vh:["Patient flow by hour","Operations"],
-  k:[["Wait","Tracked"],["Peak","3–5pm"]],viz:line([20,28,44,52,49,66,88,92,70,48,36,25]),
+ {t:"Hospital & Healthcare Dashboard",img:"hospital-dashboard.webp",alt:"Healthcare operations desk with patient flow line trend monitor and stethoscope",b:"Power BI",c:["customer"],
   ins:"Analysis focus: examine patient volumes and service activity across departments and time periods.",
   d:"Operational dashboard covering patient volumes, department load and service performance across the day.",
   u:"https://github.com/mavismasikati/bbc-hospital-healthcare-dashboard"},
- {t:"Access to Drinking Water",f:"drinking-water-study.xlsx",b:"Excel",c:["customer"],g:"linear-gradient(120deg,#1c7ed6,#66d9e8)",vh:["Access by income group","Global"],
-  k:[["Regions","Compared"],["Rural","vs National"]],viz:bars([96,88,72,54,38],["High","Upp","Mid","Low","LDC"]),
+ {t:"Access to Drinking Water",img:"drinking-water-access.webp",alt:"Clean drinking water flowing from an outdoor community tap",b:"Excel",c:["customer"],
   ins:"Analysis focus: compare drinking-water access across income groups and rural or national populations.",
   d:"Spreadsheet-first study using pivot analysis across regions, income groups and rural-versus-national access.",
   u:"https://github.com/mavismasikati/Access-to-drinking-water"}];
 
 const grid=document.getElementById('projGrid');
 const render=(f='all')=>grid.innerHTML=P.filter(p=>f==='all'||p.c.includes(f)).map(p=>`
- <article class="proj rv" style="--a:${(p.g.match(/#[0-9a-f]{6}/i)||['#ff5b3d'])[0]}"><div class="viz">
-   <div class="viz-bar"><i></i><i></i><i></i><b>${p.f}</b><u>${p.b}</u></div>
-   <div class="viz-in">
-   <div class="viz-h"><span>${p.vh[0]}</span><span>${p.vh[1]}</span></div>
-   <div class="viz-k">${p.k.map(k=>`<div><b>${k[0]}</b><span>${k[1]}</span></div>`).join('')}</div>${p.viz}</div></div>
+ <article class="proj rv"><div class="viz">
+   <img src="assets/projects/${p.img}" alt="${p.alt}" width="680" height="382" loading="lazy" decoding="async">
+   <span class="viz-tag">${p.b}</span></div>
  <div class="proj-body"><h3>${p.t}</h3><div class="insight">${p.ins}</div><p>${p.d}</p>
  <div class="proj-links"><a href="${p.u}" target="_blank" rel="noopener">View on GitHub →</a></div></div></article>`).join('')+(typeof observeAll==='function'?(observeAll(),''):'');
 render();
