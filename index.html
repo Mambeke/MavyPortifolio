@@ -297,6 +297,20 @@ nav.tabs a:not(.active):hover:after{left:.85rem;right:.85rem}
 @keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
 
 
+
+/* Business insight cards: compact, staggered entrance, then gentle float */
+.chip{opacity:0}
+.chip.entering{animation:chipSlideIn .78s cubic-bezier(.2,.75,.25,1) both}
+.chip.c1.entering{animation-delay:.12s}
+.chip.c2.entering{animation-delay:.32s}
+.chip.c3.entering{animation-delay:.52s}
+.chip.settled{opacity:1;animation:float 5s ease-in-out infinite}
+.chip .chip-title{display:block;font-family:var(--d);font-size:.76rem;font-weight:800;line-height:1.25;max-width:190px}
+.chip small{font-size:.64rem;line-height:1.3;margin-top:2px}
+@keyframes chipSlideIn{from{opacity:0;transform:translate3d(0,22px,0) scale(.96)}to{opacity:1;transform:translate3d(0,0,0) scale(1)}}
+@media(max-width:920px){.chip .chip-title{font-size:.7rem}.chip small{font-size:.59rem}}
+@media(prefers-reduced-motion:reduce){.chip,.chip.entering,.chip.settled{animation:none!important;opacity:1!important;transform:none!important}}
+
 </style>
 </head>
 <body>
@@ -338,9 +352,9 @@ nav.tabs a:not(.active):hover:after{left:.85rem;right:.85rem}
       </div>
       <div class="pic-wrap">
         <div class="pic"><div class="badge live onpic"><span class="dot"></span> Available now for freelance projects &amp; remote roles</div><span class="ring"></span><img src="assets/mavis.webp?v=2" width="1086" height="1448" fetchpriority="high" decoding="async" alt="Mavis Masikati, data and financial analyst"></div>
-        <div class="chip c1"><i style="background:#fff2ec">📊</i><div>Power BI<small>Dashboards that update themselves</small></div></div>
-        <div class="chip c2"><i style="background:var(--mint)">💡</i><div>Profitability insight<small>understand what drives your margins</small></div></div>
-        <div class="chip c3"><i style="background:#fff6e0">⚡</i><div>Clear next steps<small>findings linked to practical action</small></div></div>
+        <div class="chip c1" data-message-card="profit"><i style="background:#fff2ec">📈</i><div><span class="chip-title">Are you really making a profit?</span><small>Understand what drives your margins.</small></div></div>
+        <div class="chip c2" data-message-card="growth"><i style="background:var(--mint)">💡</i><div><span class="chip-title">Know what drives your growth.</span><small>See what performs and what needs attention.</small></div></div>
+        <div class="chip c3" data-message-card="decisions"><i style="background:#fff6e0">🎯</i><div><span class="chip-title">Make decisions backed by numbers.</span><small>Turn business data into clear next steps.</small></div></div>
       </div>
     </div>
   </div>
@@ -674,6 +688,40 @@ const render=(f='all')=>grid.innerHTML=P.filter(p=>f==='all'||p.c.includes(f)).m
    <span class="viz-tag">${p.b}</span></div>
  <div class="proj-body"><h3>${p.t}</h3><div class="insight">${p.ins}</div><p>${p.d}</p>
  <div class="proj-links"><a href="${p.u}" target="_blank" rel="noopener">View on GitHub →</a></div></div></article>`).join('')+(typeof observeAll==='function'?(observeAll(),''):'');
+
+/* Rotating business messages on the three portrait cards */
+const rotatingMessages={
+ profit:[
+  ["Are you really making a profit?","Understand what drives your margins."],
+  ["Where is your money going?","See what is driving your costs."],
+  ["Is your stock generating returns?","Understand stock movement and value."],
+  ["Are you growing profitably?","Look beyond sales to the bottom line."]
+ ],
+ growth:[
+  ["Know what drives your growth.","See what performs and what needs attention."],
+  ["Which products drive your revenue?","Identify the products contributing most."],
+  ["Understand your business performance.","Track the measures that matter."],
+  ["Is your business moving forward?","See patterns across sales and operations."]
+ ],
+ decisions:[
+  ["Make decisions backed by numbers.","Turn business data into clear next steps."],
+  ["Do you know where your cash stands?","Get a clearer view of cash flow."],
+  ["Stop guessing. Understand your numbers.","Use evidence to guide your next move."],
+  ["Know where to focus next.","Find the areas that need attention."]
+ ]
+};
+document.querySelectorAll('[data-message-card]').forEach((card,index)=>{
+ const messages=rotatingMessages[card.dataset.messageCard];let current=0;
+ card.classList.add('entering');
+ card.addEventListener('animationend',()=>{card.classList.remove('entering');card.classList.add('settled');},{once:true});
+ window.setInterval(()=>{
+  current=(current+1)%messages.length;
+  const title=card.querySelector('.chip-title'),sub=card.querySelector('small');
+  title.style.opacity='0';sub.style.opacity='0';
+  window.setTimeout(()=>{title.textContent=messages[current][0];sub.textContent=messages[current][1];title.style.opacity='1';sub.style.opacity='1';},220);
+ },5000);
+});
+
 render();
 document.getElementById('filter').onclick=e=>{const b=e.target.closest('button');if(!b)return;
  document.querySelectorAll('#filter button').forEach(x=>x.classList.remove('on'));b.classList.add('on');render(b.dataset.f);observeAll();};
