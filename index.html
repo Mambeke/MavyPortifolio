@@ -661,30 +661,22 @@ const TOOLS=["Excel","Power BI","SQL","Python","DAX","Pandas","Data cleaning","D
 document.getElementById('marq').innerHTML=[0,1].map(()=>TOOLS.map(t=>`<span>${t}</span><b>◆</b>`).join('')).join('');
 
 const P=[
- {t:"Superstore Sales Performance",img:"superstore-sales.webp",alt:"Retail store electronics and furniture display with category margin chart on tablet",b:"Power BI",c:["sales","finance"],
-  ins:"Analysis focus: compare category revenue with profit contribution and identify margin differences.",
-  d:"Sales and profit broken down by category, region and product across a full financial year, modelled in Power BI with DAX measures.",
-  u:"https://github.com/mavismasikati/FUTURE_DS_TASK01"},
- {t:"Customer Segmentation & RFM",img:"customer-rfm.webp",alt:"Customer orders and segmented ring chart on analyst laptop",b:"Power BI",c:["customer","finance"],
-  ins:"Analysis focus: use customer value segments to compare purchasing behaviour and retention patterns.",
-  d:"Recency, frequency and monetary scoring to expose churn and rank customers by value — delivered as a retention dashboard with target lists.",
-  u:"https://github.com/mavismasikati/FUTURE_DS_TASK02"},
- {t:"E-commerce Conversion Funnel",img:"ecommerce-funnel.webp",alt:"Online shopping product grid and conversion funnel visual on laptop and phone",b:"Python",c:["sales","customer"],
-  ins:"Analysis focus: locate the largest drop-off points in the recorded e-commerce conversion journey.",
-  d:"Session-level funnel analysis in Python mapping drop-off at every stage, plus hour-by-hour traffic showing a 1 PM peak for campaign timing.",
-  u:"https://github.com/mavismasikati/FUTURE_DS_TASK03"},
- {t:"Food & Beverage Sales Dashboard",img:"food-beverage-sales.webp",alt:"Modern food and beverage counter with sales chart tablet",b:"Power BI",c:["sales","finance"],
-  ins:"Analysis focus: compare sales volume, average price and revenue across sales channels.",
-  d:"Power BI dashboard tracking revenue, order volume and average price by channel, category, salesperson and period.",
-  u:"https://github.com/mavismasikati/Food-and-Beverages-sales-analysis"},
- {t:"Market Basket Analysis",img:"market-basket.webp",alt:"Retail shopping basket filled with paired grocery items on wooden counter",b:"Python",c:["customer","sales"],
-  ins:"Analysis focus: identify product combinations with stronger association in transaction records.",
-  d:"Support, confidence and lift calculated across retail transactions, translated into cross-sell bundles and shelf-placement decisions.",
-  u:"https://github.com/mavismasikati/Market-Basket-Analysis"},
- {t:"Monday Coffee — Market Entry",img:"monday-coffee.webp",alt:"Specialty coffee cup and espresso beans overlooking a busy city street",b:"SQL",c:["sql","finance"],
-  ins:"Analysis focus: compare city-level demand indicators to support a market-entry assessment.",
-  d:"SQL analysis of sales, customer counts and city-level demand to recommend where a coffee chain should open next.",
-  u:"https://github.com/mavismasikati/Monday_Coffee_sql_p2"}
+ {t:"Accounts Receivable & Payable Analysis",img:"bank-loan-report.webp",alt:"Financial analysis workspace showing customer receivables, supplier payables and invoice ageing reports on a laptop",b:"Excel · SQL · Power BI",c:["finance","sql"],
+  ins:"Analysis focus: identify overdue customer balances, upcoming supplier payments and working-capital pressure.",
+  d:"A wholesale distribution case study analysing 757 customer and supplier invoice transactions, ageing balances, collection patterns, credit exposure and payment obligations.",
+  u:"https://github.com/mavismasikati/Accounts-receivable-and-accounts-payable-analysis"},
+ {t:"Wholesale Inventory Cost & Profitability Analysis",img:"superstore-sales.webp",alt:"Wholesale inventory and profitability analysis dashboard with product margin and stock performance charts",b:"Power BI · DAX · Excel",c:["sales","finance"],
+  ins:"Analysis focus: understand why R12.4 million in sales produced only a 1.3% net profit margin.",
+  d:"An interactive analysis of product margins, stockouts, inventory investment, supplier delivery performance and operating costs using simulated wholesale business data.",
+  u:"https://github.com/mavismasikati/Wholesale-Inventory-Cost-Profitability-Analysis"},
+ {t:"Retail Cash Flow & Budget Control",img:"food-beverage-sales.webp",alt:"Retail financial planning dashboard with cash flow forecast, monthly budget and actual performance on a laptop",b:"Excel · SQL · Power BI",c:["finance","sql"],
+  ins:"Analysis focus: assess whether available cash can cover operating needs and a planned R100,000 investment.",
+  d:"A retail cash-flow and budget-control case study that flags months below a R150,000 cash reserve, models a 15-day customer payment delay and compares monthly budget with actual results.",
+  u:"https://github.com/mavismasikati/Retail_Cashflow_Budget"},
+ {t:"Small Business Financial Performance Dashboard",img:"superstore-sales.webp",alt:"Small business financial dashboard comparing revenue, costs, expenses and profit trends on a laptop",b:"Power BI · DAX · Python",c:["finance","sales"],
+  ins:"Analysis focus: explain how revenue grew by 14.6% while net profit fell by 42%.",
+  d:"A 24-month financial performance dashboard for a fictional Cape Town homeware retailer, examining margins, operating expenses, product categories and seasonal profit patterns. The dataset is synthetic and the project is a portfolio demonstration.",
+  u:"https://github.com/mavismasikati/small-business-financial-dashboard"}
 ];
 
 const grid=document.getElementById('projGrid');
