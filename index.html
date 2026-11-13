@@ -296,26 +296,6 @@ nav.tabs a:not(.active):hover:after{left:.85rem;right:.85rem}
 .reveal{animation:rise .7s cubic-bezier(.2,.7,.3,1) both}
 @keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
 
-/* HOME — navy and cobalt landing page */
-.home-page{background:#0d1e34}.home-hero{min-height:min(820px,calc(100vh - 72px));position:relative;overflow:hidden;display:flex;align-items:center;padding:clamp(2rem,5vw,4.8rem) max(4vw,calc((100vw - 1400px)/2));isolation:isolate;color:#fff}
-.home-photo{position:absolute;inset:0 0 0 28%;z-index:-3;background-image:url('assets/mavis.webp?v=2');background-size:cover;background-position:center 27%}
-.home-shade{position:absolute;inset:0;z-index:-2;background:linear-gradient(90deg,#0b1b30 0%,rgba(11,27,48,.98) 29%,rgba(11,27,48,.82) 48%,rgba(11,27,48,.16) 78%,rgba(11,27,48,.24) 100%)}
-.home-copy{width:min(650px,55%);position:relative;z-index:1;padding:1.5rem 0}.home-kicker{display:inline-block;color:#66baff;font-family:var(--d);font-size:.76rem;font-weight:800;letter-spacing:.16em;margin-bottom:1rem}
-.home-copy h1{font-size:clamp(2.5rem,4.3vw,4.2rem);line-height:1.12;letter-spacing:-.04em;color:#fff;margin-bottom:1.2rem}
-.home-copy>p{font-size:clamp(1rem,1.35vw,1.2rem);max-width:54ch;color:#e4ebf5;line-height:1.65}
-.home-services{list-style:none;padding:0;margin:1.35rem 0 1.8rem;display:grid;gap:.55rem}.home-services li{position:relative;padding-left:2.1rem;font-family:var(--d);font-size:clamp(.88rem,1.1vw,1.04rem);font-weight:600;color:#fff}.home-services li:before{content:"✓";position:absolute;left:0;color:#45b5ff;font-size:1.35rem;font-weight:800;top:-.18rem}
-.home-actions{display:flex;gap:.8rem;flex-wrap:wrap}.home-primary,.home-secondary{display:inline-flex;align-items:center;justify-content:center;min-width:190px;padding:.9rem 1.4rem;border-radius:12px;font-family:var(--d);font-weight:800;text-decoration:none;transition:.2s}
-.home-primary{background:#075fe8;color:#fff;border:1px solid #075fe8}.home-primary:hover{background:#1477ff;transform:translateY(-2px)}.home-secondary{border:1.5px solid #fff;color:#fff;background:rgba(255,255,255,.04)}.home-secondary:hover{background:#fff;color:#0d1e34}
-.sales-card{position:absolute;z-index:5;right:clamp(22px,4vw,70px);top:50%;transform:translateY(-50%);width:min(390px,34vw);background:#fff;color:#111827;border-radius:22px;overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,.34);transition:opacity .25s,transform .25s}
-.sales-card-head{background:#004d49;color:#fff;display:flex;align-items:center;gap:.7rem;padding:1rem 1.15rem;font-family:var(--d);font-size:1.02rem}.sales-wa-icon{display:grid;place-items:center;width:36px;height:36px;border:2px solid #fff;border-radius:50%;font-size:1.35rem;font-weight:800;flex:none}.sales-card-head button{margin-left:auto;border:0;background:none;color:#fff;font-size:1.8rem;line-height:1;cursor:pointer}
-.sales-card-body{padding:1.15rem 1.2rem 1.05rem}.sales-avatar{width:74px;height:74px;margin:0 auto .5rem;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#dce8f3,#f5d9c9);color:#0d1e34;font-family:var(--d);font-weight:800;font-size:1.35rem;border:3px solid #f2f4f7}
-.sales-greeting{font-size:1.08rem;line-height:1.5;margin:.3rem 0 1rem}.sales-options{display:grid;gap:.48rem}.sales-options button{width:100%;display:flex;align-items:center;gap:.8rem;text-align:left;padding:.72rem .8rem;background:#fff;border:1px solid #e1e5eb;border-radius:13px;color:#111827;font-family:var(--d);font-size:.87rem;font-weight:700;cursor:pointer;box-shadow:0 3px 8px rgba(0,0,0,.035);transition:.18s}
-.sales-options button:hover,.sales-options button.selected{border-color:#0b65e8;background:#f1f6ff}.sales-options button span{width:28px;color:#123a9b;font-size:1.25rem;text-align:center;flex:none}
-.sales-start{display:flex;justify-content:center;align-items:center;margin-top:.9rem;padding:.82rem .8rem;background:#079b24;color:#fff;border-radius:13px;text-decoration:none;font-family:var(--d);font-weight:800}.sales-start:hover{background:#07851f}.sales-note{display:block;text-align:center;color:#6b7280;font-size:.73rem;margin-top:.55rem}
-.sales-launcher{display:none;position:absolute;right:clamp(22px,4vw,70px);bottom:28px;width:66px;height:66px;border:0;border-radius:50%;background:#079b24;color:#fff;font-size:2rem;box-shadow:0 10px 30px rgba(0,0,0,.3);cursor:pointer;z-index:6}
-.sales-card.is-closed{opacity:0;pointer-events:none;transform:translate(20px,-46%)}.sales-launcher.is-visible{display:grid;place-items:center}
-@media(max-width:1000px){.home-hero{min-height:780px;align-items:flex-start;padding:3rem 5vw 2rem}.home-photo{inset:0;background-position:58% center}.home-shade{background:linear-gradient(90deg,rgba(11,27,48,.97),rgba(11,27,48,.77) 58%,rgba(11,27,48,.45))}.home-copy{width:min(620px,100%);padding:0 0 330px}.sales-card{top:auto;bottom:22px;right:5vw;transform:none;width:min(390px,90vw)}.sales-card.is-closed{transform:translateY(20px)}.sales-launcher{right:5vw;bottom:24px}}
-@media(max-width:560px){.home-hero{min-height:900px;padding:2.2rem 5vw 1.4rem}.home-copy{padding-bottom:390px}.home-copy h1{font-size:2.35rem}.home-services{gap:.42rem}.home-services li{font-size:.83rem}.home-actions{gap:.55rem}.home-primary,.home-secondary{min-width:0;flex:1;padding:.82rem .65rem;font-size:.82rem}.sales-card{left:5vw;right:5vw;bottom:14px;width:auto}.sales-card-body{padding:.8rem .9rem}.sales-avatar{width:54px;height:54px}.sales-greeting{font-size:.95rem;margin:.15rem 0 .65rem}.sales-options{grid-template-columns:1fr 1fr;gap:.38rem}.sales-options button{font-size:.72rem;padding:.58rem .5rem;gap:.4rem}.sales-start{margin-top:.65rem;padding:.7rem}.sales-note{font-size:.68rem}}
 
 </style>
 </head>
@@ -326,7 +306,6 @@ nav.tabs a:not(.active):hover:after{left:.85rem;right:.85rem}
     <a class="brand" href="#about" data-tab="about"><span class="mark">MM</span>
       <span><b>Mavis Masikati</b><span>Data &amp; Financial Analyst</span></span></a>
     <nav class="tabs" id="tabs">
-      <a href="#home" data-tab="home" class="active">Home</a>
       <a href="#about" data-tab="about">About</a>
       <a href="#services" data-tab="services">Services</a>
       <a href="#projects" data-tab="projects">Projects</a>
@@ -339,29 +318,8 @@ nav.tabs a:not(.active):hover:after{left:.85rem;right:.85rem}
 </header>
 
 <main>
-<!-- ═════════ HOME ═════════ -->
-<div id="home" class="page active home-page">
-<section class="home-hero">
-<div class="home-photo" role="img" aria-label="Mavis Masikati in a professional office setting"></div><div class="home-shade"></div>
-<div class="home-copy"><span class="home-kicker">DATA &amp; FINANCIAL ANALYSIS</span>
-<h1>Turning Business Data<br>Into Better Decisions</h1>
-<p>I help small businesses turn everyday financial and operational records into information they can use.</p>
-<ul class="home-services"><li>Financial Reporting &amp; Analysis</li><li>Inventory &amp; Stock Analysis</li><li>Product Profitability Analysis</li><li>Business Intelligence Dashboards</li><li>Accounts Receivable &amp; Payable Analysis</li></ul>
-<div class="home-actions"><a class="home-primary" href="#services" data-tab="services">View Services</a><a class="home-secondary" href="#contact" data-tab="contact">Get in Touch</a></div></div>
-<aside class="sales-card" id="homeSalesCard" aria-label="Sales assistant conversation">
-<div class="sales-card-head"><span class="sales-wa-icon">◉</span><b>Talk to our Sales Assistant</b><button type="button" id="salesClose" aria-label="Close sales assistant">×</button></div>
-<div class="sales-card-body"><div class="sales-avatar">MM</div><p class="sales-greeting">Hello! 👋<br><b>I'm the Sales Assistant.</b><br>How can I help you today?</p>
-<div class="sales-options" role="group" aria-label="Choose what you need">
-<button type="button" data-sales-choice="I'd like to learn more about your services."><span>▥</span>Learn about our services</button>
-<button type="button" data-sales-choice="I'd like to request a quote."><span>▤</span>Request a quote</button>
-<button type="button" data-sales-choice="I'd like to book a consultation."><span>▦</span>Book a consultation</button>
-<button type="button" data-sales-choice="I have a question about your services."><span>?</span>Ask a question</button></div>
-<a class="sales-start" id="salesStart" href="https://wa.me/27691116535?text=Hi%20Mavis%2C%20I%20would%20like%20to%20learn%20more." target="_blank" rel="noopener">☏ &nbsp; Start Chat on WhatsApp</a><small class="sales-note">You'll continue the conversation on WhatsApp.</small></div></aside>
-<button class="sales-launcher" id="salesLauncher" type="button" aria-label="Open Sales Assistant">☏</button>
-</section></div>
-
-<!-- ═════════ ABOUT ═════════ -->
-<div id="about" class="page">
+<!-- ═════════ ABOUT = LANDING ═════════ -->
+<div id="about" class="page active">
   <div class="hero">
     <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
     <div class="wrap hero-badges">
@@ -643,7 +601,7 @@ nav.tabs a:not(.active):hover:after{left:.85rem;right:.85rem}
 <footer>
   <div class="wrap">
     <div>© <span id="yr"></span> Mavis Masikati · Financial Reporting &amp; Business Data Analysis · Cape Town, South Africa</div>
-    <div><a href="#home" data-tab="home">Home</a><a href="#about" data-tab="about">About</a><a href="#services" data-tab="services">Services</a><a href="#projects" data-tab="projects">Projects</a><a href="#blog" data-tab="blog">Blog</a><a href="#contact" data-tab="contact">Contact</a></div>
+    <div><a href="#about" data-tab="about">About</a><a href="#services" data-tab="services">Services</a><a href="#projects" data-tab="projects">Projects</a><a href="#blog" data-tab="blog">Blog</a><a href="#contact" data-tab="contact">Contact</a></div>
   </div>
 </footer>
 
@@ -775,7 +733,7 @@ function show(tab,artIdx=null,scroll=true){
 }
 function applyHash(scroll=true){
  const raw=location.hash.replace(/^#/,'');
- if(!raw){show('home',null,scroll);return;}
+ if(!raw){show('about',null,scroll);return;}
  if(raw.startsWith('blog/')){show('blog',raw.split('/')[1],scroll);return;}
  const el=document.getElementById(raw);
  if(el&&el.classList.contains('page'))show(raw,null,scroll);
@@ -783,14 +741,6 @@ function applyHash(scroll=true){
 document.addEventListener('click',e=>{const a=e.target.closest('[data-tab]');if(!a)return;e.preventDefault();
  const target='#'+a.dataset.tab;
  if(location.hash===target)applyHash(true); else location.hash=target;});
-
-const salesCard=document.getElementById('homeSalesCard'),salesLauncher=document.getElementById('salesLauncher'),salesStart=document.getElementById('salesStart');
-document.querySelectorAll('[data-sales-choice]').forEach(btn=>btn.addEventListener('click',()=>{
- document.querySelectorAll('[data-sales-choice]').forEach(x=>x.classList.remove('selected'));btn.classList.add('selected');
- salesStart.href='https://wa.me/27691116535?text='+encodeURIComponent('Hi Mavis, '+btn.dataset.salesChoice);
-}));
-document.getElementById('salesClose').onclick=()=>{salesCard.classList.add('is-closed');salesLauncher.classList.add('is-visible');};
-salesLauncher.onclick=()=>{salesCard.classList.remove('is-closed');salesLauncher.classList.remove('is-visible');};
 
 burger.onclick=()=>{const open=tabsEl.classList.toggle('open');burger.setAttribute('aria-expanded',String(open));};
 window.addEventListener('hashchange',()=>applyHash(true));
