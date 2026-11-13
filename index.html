@@ -681,30 +681,11 @@ const P=[
   ins:"Analysis focus: identify product combinations with stronger association in transaction records.",
   d:"Support, confidence and lift calculated across retail transactions, translated into cross-sell bundles and shelf-placement decisions.",
   u:"https://github.com/mavismasikati/Market-Basket-Analysis"},
- {t:"Bank Loan Portfolio Report",img:"bank-loan-report.webp",alt:"Financial analyst desk with calculator, folder and loan portfolio bar chart on laptop",b:"Power BI",c:["finance"],
-  ins:"Analysis focus: compare loan applications, funded amounts and portfolio quality indicators.",
-  d:"Lending report covering application volumes, funded and received amounts, and good-versus-bad loan performance for credit decisions.",
-  u:"https://github.com/mavismasikati/Bank-loan-Report"},
- {t:"Bicycle Shop Sales Analysis",img:"bicycle-shop-sales.webp",alt:"Modern bicycle retail showroom with road and commuter bikes on display",b:"Excel · Power BI",c:["sales"],
-  ins:"Analysis focus: examine historical sales trends and seasonal variation to support stock planning.",
-  d:"Two years of retail sales cleaned in Excel and visualised in Power BI: trends, seasonality, customer and product segmentation, KPI tracking.",
-  u:"https://github.com/mavismasikati/Sales-Analysis-of-a-Bicycle-shop"},
- {t:"Library Management System (SQL)",img:"library-sql.webp",alt:"Contemporary library shelves with database schema workstation in foreground",b:"SQL",c:["sql"],
-  ins:"Analysis focus: demonstrate relational database design, data management and SQL querying.",
-  d:"Full SQL project — schema design, table management, CRUD operations and advanced queries on a working library database.",
-  u:"https://github.com/mavismasikati/Library-Management_sql_project"},
  {t:"Monday Coffee — Market Entry",img:"monday-coffee.webp",alt:"Specialty coffee cup and espresso beans overlooking a busy city street",b:"SQL",c:["sql","finance"],
   ins:"Analysis focus: compare city-level demand indicators to support a market-entry assessment.",
   d:"SQL analysis of sales, customer counts and city-level demand to recommend where a coffee chain should open next.",
-  u:"https://github.com/mavismasikati/Monday_Coffee_sql_p2"},
- {t:"Hospital & Healthcare Dashboard",img:"hospital-dashboard.webp",alt:"Healthcare operations desk with patient flow line trend monitor and stethoscope",b:"Power BI",c:["customer"],
-  ins:"Analysis focus: examine patient volumes and service activity across departments and time periods.",
-  d:"Operational dashboard covering patient volumes, department load and service performance across the day.",
-  u:"https://github.com/mavismasikati/bbc-hospital-healthcare-dashboard"},
- {t:"Access to Drinking Water",img:"drinking-water-access.webp",alt:"Clean drinking water flowing from an outdoor community tap",b:"Excel",c:["customer"],
-  ins:"Analysis focus: compare drinking-water access across income groups and rural or national populations.",
-  d:"Spreadsheet-first study using pivot analysis across regions, income groups and rural-versus-national access.",
-  u:"https://github.com/mavismasikati/Access-to-drinking-water"}];
+  u:"https://github.com/mavismasikati/Monday_Coffee_sql_p2"}
+];
 
 const grid=document.getElementById('projGrid');
 const render=(f='all')=>grid.innerHTML=P.filter(p=>f==='all'||p.c.includes(f)).map(p=>`
