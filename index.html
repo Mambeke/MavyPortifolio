@@ -311,6 +311,29 @@ nav.tabs a:not(.active):hover:after{left:.85rem;right:.85rem}
 @media(max-width:920px){.chip .chip-title{font-size:.7rem}.chip small{font-size:.59rem}}
 @media(prefers-reduced-motion:reduce){.chip,.chip.entering,.chip.settled{animation:none!important;opacity:1!important;transform:none!important}}
 
+
+/* Services: editorial two-column rows with service-specific visuals */
+#services .head>p:last-child{display:none}
+#services .grid.g2{grid-template-columns:1fr;gap:1.15rem}
+#services .svc-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(300px,.92fr);grid-template-rows:auto 1fr;column-gap:clamp(1.2rem,3vw,2.4rem);align-items:stretch;padding:1.2rem;border:1px solid #dce5f1;border-radius:20px;background:#fff;overflow:hidden}
+#services .svc-top{grid-column:1;grid-row:1;background:transparent!important;color:var(--ink);padding:.35rem .2rem .6rem;align-items:flex-start}
+#services .svc-top .si{background:#edf4ff;color:#075fe8;width:48px;height:48px}
+#services .svc-top h3{color:#102344;font-size:clamp(1.1rem,1.5vw,1.35rem)}
+#services .svc-top small{color:#53627a;opacity:1;font-size:.8rem}
+#services .svc-body{grid-column:1;grid-row:2;padding:.2rem .2rem .35rem}
+#services .svc-body>p{color:#46556d;font-size:.93rem;line-height:1.7}
+#services .svc-out{background:#f2f6fc;border-left:3px solid #1769d2;color:#253a59}
+#services .svc-visual{grid-column:2;grid-row:1 / span 2;min-height:270px;border-radius:15px;overflow:hidden;background:#eaf0f8;align-self:stretch}
+#services .svc-visual img{display:block;width:100%;height:100%;min-height:270px;object-fit:cover}
+#services .svc-foot a{color:#075fe8}
+@media(max-width:760px){
+ #services .svc-row{display:flex;flex-direction:column;gap:.35rem;padding:1rem}
+ #services .svc-top{order:0;padding:.2rem .1rem .55rem}
+ #services .svc-visual{order:1;width:100%;min-height:190px;height:210px}
+ #services .svc-visual img{min-height:190px;height:210px}
+ #services .svc-body{order:2;padding:.65rem .1rem .2rem}
+}
+
 </style>
 </head>
 <body>
@@ -423,16 +446,15 @@ nav.tabs a:not(.active):hover:after{left:.85rem;right:.85rem}
       <div class="head rv">
         <span class="eyebrow">Services</span>
         <h2>Turning business data into better decisions.</h2>
-        <p class="muted">I help small businesses turn everyday financial and operational records into information they can use. From sales and expense reporting to cash flow visibility, stock performance and business dashboards, the focus is on making the numbers clearer, more organised and more useful for day-to-day decisions.</p>
-        <p class="muted">My aim is to make financial reporting and data analytics accessible, understandable and practical for small businesses — with solutions shaped around the records you have, the questions you need answered and the way your business operates.</p>
-        <p><b>Make your business numbers work for you.</b></p>
+        <p class="muted">I help businesses turn everyday financial and operational records into information they can use.</p>
       </div>
 
       <div class="grid g2">
-        <article class="svc reveal rv">
+        <article class="svc svc-row reveal rv">
           <div class="svc-top" style="background:linear-gradient(120deg,#ff5b3d,#ffb02e)">
             <div class="si">📊</div><div><h3>Financial Reporting &amp; Analysis</h3><small>Understand performance, costs and cash flow</small></div>
           </div>
+          <div class="svc-visual"><img src="assets/services/financial-reporting.webp" alt="Financial reporting dashboard showing revenue, expenses, profit, cash flow and monthly performance charts on a laptop" loading="lazy" decoding="async"></div>
           <div class="svc-body">
             <p>Get a clearer picture of how money moves through your business. I organise and analyse financial records to help you monitor income, expenses, cash flow and overall performance. Reports can highlight changes over time, compare actual results with budgets and bring important financial measures into one consistent view.</p>
             <div class="svc-out"><b>What this helps you understand</b>Where income is coming from, what is driving expenses, how performance is changing and where further attention may be needed.</div>
@@ -446,10 +468,11 @@ nav.tabs a:not(.active):hover:after{left:.85rem;right:.85rem}
           </div>
         </article>
 
-        <article class="svc reveal rv">
+        <article class="svc svc-row reveal rv">
           <div class="svc-top" style="background:linear-gradient(120deg,#0fa39a,#43c6ac)">
             <div class="si">📦</div><div><h3>Inventory &amp; Stock Analysis</h3><small>Know what is moving, what is sitting and what needs attention</small></div>
           </div>
+          <div class="svc-visual"><img src="assets/services/inventory-stock.webp" alt="Inventory analysis dashboard on a laptop showing stock levels, fast and slow moving products, stock value and reorder indicators in a warehouse office" loading="lazy" decoding="async"></div>
           <div class="svc-body">
             <p>Stock affects both cash flow and the ability to meet customer demand. I analyse inventory records and stock movement to help businesses understand purchasing patterns, identify slow-moving and fast-moving items, monitor stock levels and investigate differences between recorded and expected quantities.</p>
             <div class="svc-out"><b>What this helps you understand</b>Which items move quickly, which may be tying up working capital and where stock records or replenishment decisions need review.</div>
@@ -463,10 +486,11 @@ nav.tabs a:not(.active):hover:after{left:.85rem;right:.85rem}
           </div>
         </article>
 
-        <article class="svc reveal rv">
+        <article class="svc svc-row reveal rv">
           <div class="svc-top" style="background:linear-gradient(120deg,#6c5ce7,#a06cff)">
             <div class="si">🏷️</div><div><h3>Product Profitability Analysis</h3><small>Look beyond sales to understand product contribution</small></div>
           </div>
+          <div class="svc-visual"><img src="assets/services/product-profitability.webp" alt="Product profitability report on a laptop comparing product sales, costs, gross profit and margin percentages" loading="lazy" decoding="async"></div>
           <div class="svc-body">
             <p>A product can sell well without contributing as much profit as expected. I bring together available sales, pricing and cost information to assess product-level performance, compare margins and identify products or categories that may require a closer look. The analysis can support pricing, purchasing, promotion and product-range decisions.</p>
             <div class="svc-out"><b>What this helps you understand</b>Which products contribute most to gross profit, where margins are under pressure and how pricing or costs affect product performance.</div>
@@ -480,10 +504,11 @@ nav.tabs a:not(.active):hover:after{left:.85rem;right:.85rem}
           </div>
         </article>
 
-        <article class="svc reveal rv">
+        <article class="svc svc-row reveal rv">
           <div class="svc-top" style="background:linear-gradient(120deg,#e08c00,#ffd45e)">
             <div class="si">📈</div><div><h3>Business Intelligence Dashboards</h3><small>Bring key business information into one view</small></div>
           </div>
+          <div class="svc-visual"><img src="assets/services/business-intelligence.webp" alt="Business intelligence dashboard on a laptop showing sales, costs, profit, cash flow and business performance charts" loading="lazy" decoding="async"></div>
           <div class="svc-body">
             <p>When information is spread across spreadsheets and reports, it can be difficult to see the full picture. I develop interactive dashboards that organise relevant business measures into clear visual reports. Dashboards can be designed around the questions owners and managers need to monitor, with filters and views that make it easier to explore performance.</p>
             <div class="svc-out"><b>What this helps you understand</b>How the business is performing across selected financial and operational measures, without having to rebuild reports manually each time.</div>
@@ -497,10 +522,11 @@ nav.tabs a:not(.active):hover:after{left:.85rem;right:.85rem}
           </div>
         </article>
 
-        <article class="svc reveal rv">
+        <article class="svc svc-row reveal rv">
           <div class="svc-top" style="background:linear-gradient(120deg,#273b67,#536fa8)">
             <div class="si">🧾</div><div><h3>Accounts Receivable &amp; Payable Analysis</h3><small>Improve visibility over money owed and money due</small></div>
           </div>
+          <div class="svc-visual"><img src="assets/services/receivables-payables.webp" alt="Accounts receivable and payable ageing report on a laptop showing customer balances, supplier bills and payment due dates" loading="lazy" decoding="async"></div>
           <div class="svc-body">
             <p>Unpaid customer invoices and upcoming supplier payments affect the cash available to run a business. I analyse receivables and payables records to help you understand outstanding balances, how long invoices have remained unpaid, upcoming payment obligations and changes in working-capital patterns. This is analytical reporting support, not debt collection or bookkeeping.</p>
             <div class="svc-out"><b>What this helps you understand</b>Who owes the business, which balances are overdue, what payments are approaching and where follow-up may be required.</div>
